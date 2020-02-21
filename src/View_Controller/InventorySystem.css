@@ -1,0 +1,12 @@
+#mainTitleLabel{ /* For the main screen, top title */
+    -fx-font-size: 16px;
+}
+
+#gridPaneMain{ /* The main page, 2 column, single row main window */
+    -fx-font-size: 14px;
+    -fx-background-color: red;
+   }
+#partsLabel{
+    -fx-font-size: 16px;
+
+}
