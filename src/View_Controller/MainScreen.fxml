@@ -7,9 +7,9 @@
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" prefWidth="860"
             fx:controller="View_Controller.MainScreenController">
 
-    <Label fx:id="mainTitleLabel" text="Inventory Management System" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20"/>
+    <Label fx:id="mainTitleLabel" text="Inventory Management System" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="30"/>
 
-    <GridPane fx:id="gridPaneMain" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="50" hgap="15">
+    <GridPane fx:id="gridPaneMain" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="70" hgap="15">
         <padding>
             <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
@@ -57,7 +57,7 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="165"/>
                     </padding>
-                    <Button GridPane.rowIndex="5" GridPane.columnIndex="1" text="Add" prefWidth="70" fx:id="btnPartAdd"/>
+                    <Button GridPane.rowIndex="5" GridPane.columnIndex="1" text="Add" prefWidth="70" fx:id="btnPartAdd" onAction="#btnPartAddClick"/>
                     <Button GridPane.rowIndex="5" GridPane.columnIndex="2" text="Modify" prefWidth="70" fx:id="btnPartModify"/>
                     <Button GridPane.rowIndex="5" GridPane.columnIndex="3" text="Delete" prefWidth="70" fx:id="btnPartDelete"/>
                 </HBox>
