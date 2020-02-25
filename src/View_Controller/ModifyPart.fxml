@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" prefWidth="800" prefHeight="410"
-            fx:controller="View_Controller.MainScreenController">
+            fx:controller="View_Controller.ModifyPartController">
     <!-- top title -->
     <Label fx:id="mainTitleLabel" text="Inventory Management System" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="10"/>
     <!-- Start of page, two panel gridPane for two-column layout -->
@@ -21,28 +21,28 @@
             </padding>
 
             <children>
-                <Label text="Add Part" id="title" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="1" />
-                <RadioButton text="In-House" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="100"/>
-                <RadioButton text="Outsourced" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="100" />
+                <Label text="Modify Part" id="title" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="1" />
+                <RadioButton text="In-House" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="100" fx:id="radioInHouse"/>
+                <RadioButton text="Outsourced" GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="100" fx:id="radioOutsourced"/>
                 <Label text="ID" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <Label text="Auto Gen-Disabled" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="160" id="IDText" />
+                <Label text="Auto Gen-Disabled" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="160" id="IDText" fx:id="modifyPartIDField"/>
                 <Label text="Name" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField text ="Part Name" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="160" />
+                <TextField text ="Part Name" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="160" fx:id="modifyPartNameField"/>
                 <Label text="Inv" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField text ="Inv" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="160" />
+                <TextField text ="Inv" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="160" fx:id="modifyPartInvField"/>
                 <Label text="Price/Cost" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField text ="Price/Cost" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="160" />
+                <TextField text ="Price/Cost" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="160" fx:id="modifyPartPriceField"/>
                 <HBox GridPane.rowIndex="5" GridPane.columnIndex="0" prefWidth="400" GridPane.columnSpan="4" >
                     <children>
                         <Label text="Max"  prefWidth="45" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-                        <TextField text ="Max"  prefWidth="100" />
+                        <TextField text ="Max"  prefWidth="100" fx:id="modifyPartMaxField"/>
                         <Label text="     "/>
                         <Label text="Min" prefWidth="45"/>
-                        <TextField text ="Min" prefWidth="100" />
+                        <TextField text ="Min" prefWidth="100" fx:id="modifyPartMinField"/>
                     </children>
                 </HBox>
-                <Label GridPane.rowIndex="6" GridPane.columnIndex="0" prefWidth="110" text="Company Name" />
-                <TextField GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="160" text="Comp Nm"/>
+                <Label GridPane.rowIndex="6" GridPane.columnIndex="0" prefWidth="110" text="Machine ID" fx:id="modifyPartMachineID"/>
+                <TextField GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="160" text="Comp Nm" fx:id="modifyPartMachineIDField"/>
             </children>
             <columnConstraints>
                 <ColumnConstraints halignment="LEFT" prefWidth="140.0"/>

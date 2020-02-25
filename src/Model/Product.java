@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Product {
     int id;
     String name;
@@ -7,6 +9,7 @@ public class Product {
     int stock;
     int min;
     int max;
+    ArrayList<Part> associatedParts;
 
     public Product(int id, String name, double price, int stock, int min, int max) {
         this.id = id;
@@ -15,6 +18,24 @@ public class Product {
         this.stock = stock;
         this.min = min;
         this.max = max;
+    }
+
+    public void addAssociatedPart(Part part){
+        associatedParts.add(part);
+    }
+    public boolean deleteAssociatedPart(Part selectedAspart){
+        for ( Part part : associatedParts){
+            if (part == selectedAspart){
+                associatedParts.remove(selectedAspart);
+            }
+            else{
+                System.out.println("no match");
+            }
+        }
+        return true; //fixme true/false
+    }
+    public ArrayList getAllAssociatedParts(){
+        return associatedParts;
     }
 
     public int getId() {

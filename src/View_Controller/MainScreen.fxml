@@ -22,11 +22,11 @@
                         <Insets top="10" right="5" bottom="10" left="5"/>
                     </padding>
                     <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Parts" fx:id="partsLabel"
-                           id="title" prefWidth="70"></Label>
+                           id="title" prefWidth="70" ></Label>
                     <Label text="          "/>
-                    <Button GridPane.rowIndex="0" GridPane.columnIndex="2" text="Search" prefWidth="80" ></Button>
+                    <Button GridPane.rowIndex="0" GridPane.columnIndex="2" text="Search" prefWidth="80" fx:id="btnPartsSearch"></Button>
                     <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text="  "></Label>
-                    <TextField GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="175" fx:id="title"
+                    <TextField GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="175" fx:id="partsSearchText"
                                id="title"></TextField>
                 </HBox>
                 <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="Part ID" id="mainGridHeader"
@@ -37,29 +37,29 @@
                        prefWidth="110"/>
                 <Label GridPane.rowIndex="1" GridPane.columnIndex="3" text="Price/Cost per Unit" id="mainGridHeader"
                        prefWidth="130"/>
-                <Label GridPane.rowIndex="2" GridPane.columnIndex="0" text="empty" id="mainGridWhite" prefWidth="80"/>
-                <Label GridPane.rowIndex="2" GridPane.columnIndex="1" text="empty" id="mainGridWhite" prefWidth="80"/>
-                <Label GridPane.rowIndex="2" GridPane.columnIndex="2" text="empty" id="mainGridWhite" prefWidth="110"/>
-                <Label GridPane.rowIndex="2" GridPane.columnIndex="3" text="empty" id="mainGridWhite" prefWidth="130"/>
-                <Label GridPane.rowIndex="3" GridPane.columnIndex="0" text="empty" id="mainGrid" prefWidth="80"/>
-                <Label GridPane.rowIndex="3" GridPane.columnIndex="1" text="empty" id="mainGrid" prefWidth="80"/>
-                <Label GridPane.rowIndex="3" GridPane.columnIndex="2" text="empty" id="mainGrid" prefWidth="110"/>
-                <Label GridPane.rowIndex="3" GridPane.columnIndex="3" text="empty" id="mainGrid" prefWidth="130"/>
+                <Label GridPane.rowIndex="2" GridPane.columnIndex="0" text="partID0" id="mainGridWhite" prefWidth="80" fx:id="partID0"/>
+                <Label GridPane.rowIndex="2" GridPane.columnIndex="1" text="partName0" id="mainGridWhite" prefWidth="80" fx:id="partName0"/>
+                <Label GridPane.rowIndex="2" GridPane.columnIndex="2" text="partInvLevel0" id="mainGridWhite" prefWidth="110" fx:id="partInvLevel0"/>
+                <Label GridPane.rowIndex="2" GridPane.columnIndex="3" text="partPerUnit0" id="mainGridWhite" prefWidth="130" fx:id="partPerUnit0"/>
+                <Label GridPane.rowIndex="3" GridPane.columnIndex="0" text="empty" id="mainGrid" prefWidth="80" fx:id="partID1"/>
+                <Label GridPane.rowIndex="3" GridPane.columnIndex="1" text="empty" id="mainGrid" prefWidth="80" fx:id="partName1"/>
+                <Label GridPane.rowIndex="3" GridPane.columnIndex="2" text="empty" id="mainGrid" prefWidth="110" fx:id="partInvLevel1"/>
+                <Label GridPane.rowIndex="3" GridPane.columnIndex="3" text="empty" id="mainGrid" prefWidth="130" fx:id="partPerUnit1"/>
                 <Label GridPane.rowIndex="4" GridPane.columnIndex="0" text="empty" id="mainGridWhiteBottom"
-                       prefWidth="80"/>
+                       prefWidth="80" fx:id="partID2"/>
                 <Label GridPane.rowIndex="4" GridPane.columnIndex="1" text="empty" id="mainGridWhiteBottom"
-                       prefWidth="80"/>
+                       prefWidth="80" fx:id="partName2"/>
                 <Label GridPane.rowIndex="4" GridPane.columnIndex="2" text="empty" id="mainGridWhiteBottom"
-                       prefWidth="110"/>
+                       prefWidth="110" fx:id="partInvLevel2"/>
                 <Label GridPane.rowIndex="4" GridPane.columnIndex="3" text="empty" id="mainGridWhiteBottomRight"
-                       prefWidth="130"/>
+                       prefWidth="130" fx:id="partPerUnit2"/>
                 <HBox prefHeight="40" GridPane.rowIndex="5" GridPane.columnSpan="4" >
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="165"/>
                     </padding>
-                    <Button GridPane.rowIndex="5" GridPane.columnIndex="1" text="Add" prefWidth="70"/>
-                    <Button GridPane.rowIndex="5" GridPane.columnIndex="2" text="Modify" prefWidth="70"/>
-                    <Button GridPane.rowIndex="5" GridPane.columnIndex="3" text="Delete" prefWidth="70"/>
+                    <Button GridPane.rowIndex="5" GridPane.columnIndex="1" text="Add" prefWidth="70" fx:id="btnPartAdd"/>
+                    <Button GridPane.rowIndex="5" GridPane.columnIndex="2" text="Modify" prefWidth="70" fx:id="btnPartModify"/>
+                    <Button GridPane.rowIndex="5" GridPane.columnIndex="3" text="Delete" prefWidth="70" fx:id="btnPartDelete"/>
                 </HBox>
             </children>
             <columnConstraints>
@@ -78,11 +78,11 @@
                 <padding>
                     <Insets top="10" right="5" bottom="10" left="5"/>
                 </padding>
-                <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Products" id="title" prefWidth="70"></Label>
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="Products" id="title" prefWidth="70" fx:id="productsLabel"></Label>
                 <Label text="                "/>
-                <Button GridPane.rowIndex="0" GridPane.columnIndex="2" text="Search" prefWidth="80" ></Button>
+                <Button GridPane.rowIndex="0" GridPane.columnIndex="2" text="Search" prefWidth="80" fx:id="btnProductsSearch"/>
                 <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text="  "></Label>
-                <TextField GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="175" id="title"></TextField>
+                <TextField GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="175" id="title" fx:id="productsSearchText"/>
             </HBox>
             <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="Product ID" id="mainGridHeader"
                    prefWidth="80"/>
@@ -92,29 +92,29 @@
                    prefWidth="110"/>
             <Label GridPane.rowIndex="1" GridPane.columnIndex="3" text="Price per Unit" id="mainGridHeader"
                    prefWidth="130"/>
-            <Label GridPane.rowIndex="2" GridPane.columnIndex="0" text="00" id="mainGridWhite" prefWidth="80"/>
-            <Label GridPane.rowIndex="2" GridPane.columnIndex="1" text="empty" id="mainGridWhite" prefWidth="100"/>
-            <Label GridPane.rowIndex="2" GridPane.columnIndex="2" text="empty" id="mainGridWhite" prefWidth="110"/>
-            <Label GridPane.rowIndex="2" GridPane.columnIndex="3" text="empty" id="mainGridWhite" prefWidth="130"/>
-            <Label GridPane.rowIndex="3" GridPane.columnIndex="0" text="empty" id="mainGrid" prefWidth="80"/>
-            <Label GridPane.rowIndex="3" GridPane.columnIndex="1" text="empty" id="mainGrid" prefWidth="100"/>
-            <Label GridPane.rowIndex="3" GridPane.columnIndex="2" text="empty" id="mainGrid" prefWidth="110"/>
-            <Label GridPane.rowIndex="3" GridPane.columnIndex="3" text="empty" id="mainGrid" prefWidth="130"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="0" text="productID0" id="mainGridWhite" prefWidth="80" fx:id="productID0"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="1" text="productName0" id="mainGridWhite" prefWidth="100" fx:id="productName0"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="2" text="prodInvLevel0" id="mainGridWhite" prefWidth="110" fx:id="prodInvLevel0"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="3" text="prodPerUnit0" id="mainGridWhite" prefWidth="130" fx:id="prodPerUnit0"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="0" text="empty" id="mainGrid" prefWidth="80" fx:id="productID1"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="1" text="empty" id="mainGrid" prefWidth="100" fx:id="productName1"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="2" text="empty" id="mainGrid" prefWidth="110" fx:id="prodInvLevel1"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="3" text="empty" id="mainGrid" prefWidth="130" fx:id="prodPerUnit1"/>
             <Label GridPane.rowIndex="4" GridPane.columnIndex="0" text="empty" id="mainGridWhiteBottom"
-                   prefWidth="80"/>
+                   prefWidth="80" fx:id="productID2"/>
             <Label GridPane.rowIndex="4" GridPane.columnIndex="1" text="empty" id="mainGridWhiteBottom"
-                   prefWidth="100"/>
+                   prefWidth="100" fx:id="productName2"/>
             <Label GridPane.rowIndex="4" GridPane.columnIndex="2" text="empty" id="mainGridWhiteBottom"
-                   prefWidth="110"/>
+                   prefWidth="110" fx:id="prodInvLevel2"/>
             <Label GridPane.rowIndex="4" GridPane.columnIndex="3" text="empty" id="mainGridWhiteBottomRight"
-                   prefWidth="130"/>
+                   prefWidth="130" fx:id="prodPerUnit2"/>
             <HBox prefHeight="40" GridPane.rowIndex="5" GridPane.columnSpan="4" >
                 <padding>
                     <Insets top="10" right="0" bottom="10" left="185"/>
                 </padding>
-                <Button GridPane.rowIndex="5" GridPane.columnIndex="1" text="Add" prefWidth="70"/>
-                <Button GridPane.rowIndex="5" GridPane.columnIndex="2" text="Modify" prefWidth="70"/>
-                <Button GridPane.rowIndex="5" GridPane.columnIndex="3" text="Delete" prefWidth="70"/>
+                <Button GridPane.rowIndex="5" GridPane.columnIndex="1" text="Add" prefWidth="70" fx:id="btnProductAdd"/>
+                <Button GridPane.rowIndex="5" GridPane.columnIndex="2" text="Modify" prefWidth="70" fx:id="btnProductModify"/>
+                <Button GridPane.rowIndex="5" GridPane.columnIndex="3" text="Delete" prefWidth="70" fx:id="btnProductDelete"/>
             </HBox>
         </children>
         <columnConstraints>
