@@ -18,10 +18,10 @@
     </HBox>
     <TableView fx:id="tableParts" prefHeight="270" prefWidth="400" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
         <columns>
-            <TableColumn fx:id="partIDCol" prefWidth="60" text="Part ID" />
-            <TableColumn fx:id="partName" prefWidth="100" text="Part Name" />
-            <TableColumn fx:id="partInv" prefWidth="110" text="Inventory Level" />
-            <TableColumn fx:id="partPrice" prefWidth="130" text="Price/Cost per Unit" />
+            <TableColumn fx:id="partIdColumn" prefWidth="60" text="Part ID" />
+            <TableColumn fx:id="partNameColumn" prefWidth="100" text="Part Name" />
+            <TableColumn fx:id="partInvColumn" prefWidth="110" text="Inventory Level" />
+            <TableColumn fx:id="partPriceColumn" prefWidth="130" text="Price/Cost per Unit" />
         </columns>
     </TableView>
     <HBox AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="390.0">
@@ -45,10 +45,10 @@
     </HBox>
     <TableView fx:id="tableProducts" prefHeight="270" prefWidth="400" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
         <columns>
-            <TableColumn fx:id="productIDCol" prefWidth="70" text="Product ID" />
-            <TableColumn fx:id="productName" prefWidth="90" text="Product Name" />
-            <TableColumn fx:id="productInv" prefWidth="110" text="Inventory Level" />
-            <TableColumn fx:id="productPrice" prefWidth="130" text="Price per Unit" />
+            <TableColumn fx:id="productIdColumn" prefWidth="70" text="Product ID" />
+            <TableColumn fx:id="productNameColumn" prefWidth="90" text="Product Name" />
+            <TableColumn fx:id="productInvColumn" prefWidth="110" text="Inventory Level" />
+            <TableColumn fx:id="productPriceColumn" prefWidth="130" text="Price per Unit" />
         </columns>
     </TableView>
     <HBox AnchorPane.leftAnchor="620.0" AnchorPane.topAnchor="390.0">
@@ -64,7 +64,7 @@
     </HBox>
 
 
-    <Button id="btnExit" prefWidth="70" text="Exit" AnchorPane.rightAnchor="40" AnchorPane.topAnchor="435.0" />
+    <Button id="btnExit" prefWidth="70" text="Exit" AnchorPane.rightAnchor="40" AnchorPane.topAnchor="435.0" fx:id="exitApp" onAction="#exitApp"/>
     <stylesheets>
         <URL value="@InventorySystem.css" />
     </stylesheets>

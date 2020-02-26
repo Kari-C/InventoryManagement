@@ -1,14 +1,17 @@
 package Model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 
 public class Product {
-    int id;
-    String name;
-    double price;
-    int stock;
-    int min;
-    int max;
+    private int id;
+    private String name;
+    private double price;
+    private int stock;
+    private int min;
+    private int max;
     ArrayList<Part> associatedParts;
 
     public Product(int id, String name, double price, int stock, int min, int max) {
@@ -23,6 +26,7 @@ public class Product {
     public void addAssociatedPart(Part part){
         associatedParts.add(part);
     }
+
     public boolean deleteAssociatedPart(Part selectedAspart){
         for ( Part part : associatedParts){
             if (part == selectedAspart){
@@ -32,7 +36,7 @@ public class Product {
                 System.out.println("no match");
             }
         }
-        return true; //fixme true/false
+        return true; //fixme this has not been written write
     }
     public ArrayList getAllAssociatedParts(){
         return associatedParts;
