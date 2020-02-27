@@ -14,7 +14,7 @@
         <Label text="          " />
         <Button fx:id="btnPartSearch" prefWidth="80" text="Search" onAction="#clickPartSearch"/>
         <Label text="  " />
-        <TextField id="title" fx:id="partSearchField" prefWidth="175" />
+        <TextField id="title" fx:id="partSearchField" prefWidth="175" onAction="#enterPartSearch"/>
     </HBox>
     <TableView fx:id="tableParts" prefHeight="270" prefWidth="400" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
         <columns>
@@ -41,7 +41,7 @@
         <Label text="                " />
         <Button fx:id="btnProductSearch" prefWidth="80" text="Search" onAction="#clickProductSearch"/>
         <Label text="  " />
-        <TextField id="title" fx:id="productSearchField" prefWidth="175" />
+        <TextField id="title" fx:id="productSearchField" prefWidth="175" onAction="#enterProductSearch"/>
     </HBox>
     <TableView fx:id="tableProducts" prefHeight="270" prefWidth="400" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
         <columns>

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Part {  //part is an abstract class
@@ -66,14 +67,6 @@ public abstract class Part {  //part is an abstract class
     public int getMax() {
         return max;
     }
-    public static Part searchPart(String find){
 
-        for (Part part : Inventory.getAllParts() ) {
-            if (Objects.equals(Integer.toString(part.getId()), find) || Objects.equals(part.getName().toLowerCase(), find.toLowerCase())) {
-                System.out.println("match");
-                return part;
-            }       }
-            System.out.println("nomatch");
-            return null;
-        }
-    }
+
+}

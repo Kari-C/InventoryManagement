@@ -2,6 +2,7 @@ package View_Controller;
 
 import Kari_Cathey.Main;
 import Model.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,10 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import javax.swing.text.TabableView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -54,45 +54,21 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+        //load the parts into the table view 'tableParts'
+        //example note:  "id" is the part variable name..it's not in the FXML file
         tableParts.setItems(Inventory.getAllParts());
         partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id")); //'id' is the actual variable name
         partNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+        //load the products into the table view 'tableProducts'.
+        //example note:  "id" is the part variable name..it's not in the FXML file
         tableProducts.setItems(Inventory.getAllProducts());
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         productInvColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        //testing output
-        System.out.println(Inventory.getAllParts());
-        System.out.println(Inventory.getAllProducts());
     }
-
-    /*
-    @FXML
-    private void NextScreenHandler(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        stage=(Stage) Next.getScene().getWindow();
-        //load up OTHER FXML document
-        FXMLLoader loader=new FXMLLoader(getClass().getResource(
-                "secondScreen.fxml"));
-        root =loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        SecondScreenController controller = loader.getController();
-        Person person=table.getSelectionModel().getSelectedItem();
-        controller.setPerson(person);
-
-        tableProducts.setItems(Inventory.productsList);
-    }*/
-
 
     @FXML
     public void updatePartTableView() {
@@ -147,7 +123,7 @@ public class MainScreenController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the product?");
         alert.setTitle("Delete Product?");  //message for window
         Optional<ButtonType> result = alert.showAndWait();  //confirmation window button
-        if(result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             ObservableList<Product> allProducts, singleProduct;
             allProducts = tableProducts.getItems();  //gets the entire list of in table
             singleProduct = tableProducts.getSelectionModel().getSelectedItems();  //highlighted item assigned as single part
@@ -160,7 +136,7 @@ public class MainScreenController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the part?");
         alert.setTitle("Delete Part?");  //message for window
         Optional<ButtonType> result = alert.showAndWait();  //confirmation window button
-        if(result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             ObservableList<Part> allParts, singlePart;
             allParts = tableParts.getItems();  //gets the entire list of in table
             singlePart = tableParts.getSelectionModel().getSelectedItems();  //highlighted item assigned as single part
@@ -168,22 +144,55 @@ public class MainScreenController implements Initializable {
         }
     }
 
-    @FXML  //this closes the program
+    @FXML
+        //this closes the program
     void exitApp(ActionEvent event) {
         System.exit(0);
     }
 
-    public void clickPartSearch(ActionEvent actionEvent) {
-
-        String search = partSearchField.getText();  //capture the text in the search field
-        tableParts.getSelectionModel().select(Part.searchPart(search));
-
+    @FXML
+    public void enterPartSearch(ActionEvent event) {
+        if (Objects.equals(partSearchField.getText(), "") ) { //checks foran empty field
+            updatePartTableView();  //calls method to refill parts table
+        } else
+            clickPartSearch(event);  //call the search method
+            partSearchField.clear();  //clean the text field
     }
 
 
+    public void enterProductSearch(ActionEvent event) {
+        if (Objects.equals(productSearchField.getText(), "") ) { //checks for an empty field
+            updateProductTableView();  //calls method to refill parts table
+        } else
+            clickProductSearch(event);  //call the search method
+        productSearchField.clear();  //clean the text field
+    }
 
+    @FXML
+    public void clickPartSearch(ActionEvent actionEvent) {
+        String search = partSearchField.getText();  //capture the text in the search field
+        ObservableList<Part> partMatches = FXCollections.observableArrayList();
+        for (Part part : Inventory.getAllParts()) {  //call the getAllParts method
+            if (Objects.equals(Integer.toString(part.getId()), search.trim()) ||
+                    Objects.equals(part.getName().toLowerCase(), search.toLowerCase().trim())) {
+                partMatches.add(part);
+            }
+        }
+        tableParts.setItems(partMatches); //update window (tableParts) with matches
+        partSearchField.clear();  //clean the text field
+    }
 
+    @FXML
     public void clickProductSearch(ActionEvent actionEvent) {
-        //fixme need to write this
+        String search = productSearchField.getText();  //capture the text in the search field
+        ObservableList<Product> productMatches = FXCollections.observableArrayList();
+        for (Product product : Inventory.getAllProducts()) {
+            if (Objects.equals(Integer.toString(product.getId()), search.trim()) ||
+                    Objects.equals(product.getName().toLowerCase(), search.trim())) {
+                productMatches.add(product);
+            }
+        }
+        tableProducts.setItems(productMatches); //update window (tableParts) with matches
+        productSearchField.clear();  //clean the text field
     }
 }
