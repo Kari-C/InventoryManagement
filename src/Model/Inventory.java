@@ -13,6 +13,7 @@ public class Inventory {
     public static void addPart(Part part){
         partsList.add(part);
     }
+
     public static void addProduct(Product product){
         productsList.add(product);
     }

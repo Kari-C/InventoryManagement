@@ -12,9 +12,9 @@
 
         <Label id="title" fx:id="partsLabel" prefWidth="70" text="Parts" />
         <Label text="          " />
-        <Button fx:id="btnPartsSearch" prefWidth="80" text="Search" />
+        <Button fx:id="btnPartSearch" prefWidth="80" text="Search" onAction="#clickPartSearch"/>
         <Label text="  " />
-        <TextField id="title" fx:id="partsSearchText" prefWidth="175" />
+        <TextField id="title" fx:id="partSearchField" prefWidth="175" />
     </HBox>
     <TableView fx:id="tableParts" prefHeight="270" prefWidth="400" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
         <columns>
@@ -39,9 +39,9 @@
     <HBox AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="70.0">
         <Label id="title" fx:id="productsLabel" prefWidth="70" text="Products" />
         <Label text="                " />
-        <Button fx:id="btnProductsSearch" prefWidth="80" text="Search" />
+        <Button fx:id="btnProductSearch" prefWidth="80" text="Search" onAction="#clickProductSearch"/>
         <Label text="  " />
-        <TextField id="title" fx:id="productsSearchText" prefWidth="175" />
+        <TextField id="title" fx:id="productSearchField" prefWidth="175" />
     </HBox>
     <TableView fx:id="tableProducts" prefHeight="270" prefWidth="400" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
         <columns>

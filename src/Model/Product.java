@@ -2,17 +2,19 @@ package Model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public class Product {
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
     private double price;
     private int stock;
     private int min;
     private int max;
-    ArrayList<Part> associatedParts;
 
     public Product(int id, String name, double price, int stock, int min, int max) {
         this.id = id;
@@ -38,7 +40,7 @@ public class Product {
         }
         return true; //fixme this has not been written write
     }
-    public ArrayList getAllAssociatedParts(){
+    public ObservableList<Part> getAllAssociatedParts(){
         return associatedParts;
     }
 

@@ -1,28 +1,25 @@
 package View_Controller;
-// https://code.makery.ch/library/javafx-tutorial/part2/
-
 
 import Kari_Cathey.Main;
-import Model.Inventory;
-import Model.Part;
-import Model.Product;
+import Model.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import javax.swing.text.TabableView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
-    @FXML
-    private Inventory inventory;
     @FXML
     private TableView<Part> tableParts;
     @FXML
@@ -43,33 +40,24 @@ public class MainScreenController implements Initializable {
     private TableColumn<Product, Integer> productInvColumn;
     @FXML
     private TableColumn<Product, Double> productPriceColumn;
-    static boolean entered;
+    @FXML
+    private Button btnPartSearch;
+    @FXML
+    private Button btnProductSearch;
+    @FXML
+    private TextField partSearchField;
+    @FXML
+    private TextField productSearchField;
 
     public MainScreenController() {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Add sample data for evaluation.
 
-        if (!entered) {
-            Product product1 = new Product(1, "Screws", 0.55, 55, 5, 5000);
-            Product product2 = new Product(2, "Saws", 9.55, 55, 5, 5000);
-            Product product3 = new Product(3, "Springs", 0.45, 155, 5, 500);
-            Inventory.addProduct(product1);
-            Inventory.addProduct(product2);
-            Inventory.addProduct(product3);
-            Part part1 = new Part(1, "Wrench", 10.99, 53, 5, 500);
-            Part part2 = new Part(2, "Hammer", 10.99, 53, 5, 500);
-            Part part3 = new Part(3, "Fishing Pole", 22.99, 53, 5, 550);
-            Inventory.addPart(part1);
-            Inventory.addPart(part2);
-            Inventory.addPart(part3);
-            entered = true;
-        }
 
         tableParts.setItems(Inventory.getAllParts());
-        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id")); //'id' is the actual variable name
         partNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -80,20 +68,9 @@ public class MainScreenController implements Initializable {
         productInvColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-
-        /* partId.setCellValueFactory( cellData -> cellData.getValue().getIdProperty().asObject() );
-        partName.setCellValueFactory( cellData -> cellData.getValue().getNameProperty() );  //string doesn't need asObject
-        partInv.setCellValueFactory( cellData -> cellData.getValue().getInvProperty().asObject() );
-        partPrice.setCellValueFactory( cellData -> cellData.getValue().getPriceProperty().asObject() );
-        productId.setCellValueFactory( cellData -> cellData.getValue().getIdProperty().asObject() );
-        productName.setCellValueFactory( cellData -> cellData.getValue().getNameProperty());  //string doesn't need asObject
-        productInv.setCellValueFactory( cellData -> cellData.getValue().getInvProperty().asObject() );
-        productPrice.setCellValueFactory( cellData -> cellData.getValue().getPriceProperty().asObject() );
-
-         */
+        //testing output
         System.out.println(Inventory.getAllParts());
         System.out.println(Inventory.getAllProducts());
-
     }
 
     /*
@@ -167,15 +144,46 @@ public class MainScreenController implements Initializable {
 
     @FXML
     public void clickProductDelete(ActionEvent e) {
-    } //fixme need to write
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the product?");
+        alert.setTitle("Delete Product?");  //message for window
+        Optional<ButtonType> result = alert.showAndWait();  //confirmation window button
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            ObservableList<Product> allProducts, singleProduct;
+            allProducts = tableProducts.getItems();  //gets the entire list of in table
+            singleProduct = tableProducts.getSelectionModel().getSelectedItems();  //highlighted item assigned as single part
+            singleProduct.forEach(allProducts::remove);  //removes the selected part
+        }
+    }
 
     @FXML
-    public void clickPartDelete(ActionEvent e) {
-    }  //fixme need to write
+    public void clickPartDelete(ActionEvent e) {  //delete the selected part in the table and confirm choice
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the part?");
+        alert.setTitle("Delete Part?");  //message for window
+        Optional<ButtonType> result = alert.showAndWait();  //confirmation window button
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            ObservableList<Part> allParts, singlePart;
+            allParts = tableParts.getItems();  //gets the entire list of in table
+            singlePart = tableParts.getSelectionModel().getSelectedItems();  //highlighted item assigned as single part
+            singlePart.forEach(allParts::remove);  //removes the selected part
+        }
+    }
 
-    @FXML
+    @FXML  //this closes the program
     void exitApp(ActionEvent event) {
         System.exit(0);
     }
 
+    public void clickPartSearch(ActionEvent actionEvent) {
+
+        String search = partSearchField.getText();  //capture the text in the search field
+        tableParts.getSelectionModel().select(Part.searchPart(search));
+
+    }
+
+
+
+
+    public void clickProductSearch(ActionEvent actionEvent) {
+        //fixme need to write this
+    }
 }

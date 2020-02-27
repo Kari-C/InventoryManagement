@@ -1,12 +1,8 @@
 package Model;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
+import java.util.Objects;
 
-public class Part {
+public abstract class Part {  //part is an abstract class
     private int id;
     private String name;
     private Double price;
@@ -70,4 +66,14 @@ public class Part {
     public int getMax() {
         return max;
     }
-}
+    public static Part searchPart(String find){
+
+        for (Part part : Inventory.getAllParts() ) {
+            if (Objects.equals(Integer.toString(part.getId()), find) || Objects.equals(part.getName().toLowerCase(), find.toLowerCase())) {
+                System.out.println("match");
+                return part;
+            }       }
+            System.out.println("nomatch");
+            return null;
+        }
+    }

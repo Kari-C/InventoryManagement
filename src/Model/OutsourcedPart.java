@@ -2,11 +2,10 @@ package Model;
 
 public class OutsourcedPart extends Part {
 
-    String companyName;
+    private String companyName;
 
     public OutsourcedPart(int id, String name, double price, int stock, int min, int max, String companyName) {
-        super(0, "none", 0.0, 0, 0, 0);
-
+        super(id, name, price, stock, min, max);
         this.companyName = companyName;
     }
 

@@ -23,23 +23,23 @@
             <Label text="Modify Product" id="title" GridPane.rowIndex="0" GridPane.columnIndex="0"
                    GridPane.columnSpan="2"/>
             <Label text="ID" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <Label text="Auto Gen-Disabled" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="160" id="addID"/>
+            <Label text="Auto Gen-Disabled" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="160" id="productId"/>
             <Label text="Name" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <TextField text="Product Name" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="160"
-                       fx:id="addName"/>
+                       fx:id="productName"/>
             <Label text="Inv" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField text="Inv" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="160" fx:id="addInv"/>
+            <TextField text="Inv" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="160" fx:id="productInv"/>
             <Label text="Price" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField text="Price" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="160" fx:id="addPrice"/>
+            <TextField text="Price" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="160" fx:id="productPrice"/>
             <HBox GridPane.rowIndex="5" GridPane.columnIndex="0" prefWidth="400" GridPane.columnSpan="4">
                 <padding>
                     <Insets top="10"/>
                 </padding>
                 <Label GridPane.rowIndex="5" GridPane.columnIndex="0" text="Min" prefWidth="35"/>
-                <TextField text="Min" prefWidth="80" fx:id="addMin"/>
+                <TextField text="Min" prefWidth="80" fx:id="productMin"/>
                 <Label text="     "/>
                 <Label text="Max" prefWidth="35"/>
-                <TextField text="Max" prefWidth="80" fx:id="addMax"/>
+                <TextField text="Max" prefWidth="80" fx:id="productMax"/>
             </HBox>
         </children>
         <columnConstraints>
@@ -50,45 +50,45 @@
     <!--Begin column 2 -->
     <HBox prefHeight="40" AnchorPane.topAnchor="20" AnchorPane.rightAnchor="30">
         <Label text="              "/>
-        <Button text="Search" prefWidth="80" fx:id="btnSearch"></Button>
+        <Button text="Search" prefWidth="80" fx:id="btnSearch" onAction="#clickBtnSearch"></Button>
         <Label text="  " fx:id="btnSearchField"></Label>
         <TextField prefWidth="175" id="title"></TextField>
     </HBox>
-    <TableView fx:id="tableParts" prefHeight="150" prefWidth="400" AnchorPane.rightAnchor="30.0"
-               AnchorPane.topAnchor="50.0">
-        <columns>
-            <TableColumn fx:id="partIDCol" prefWidth="60" text="Part ID"/>
-            <TableColumn fx:id="partName" prefWidth="100" text="Part Name"/>
-            <TableColumn fx:id="partInv" prefWidth="110" text="Inventory Level"/>
-            <TableColumn fx:id="partPrice" prefWidth="130" text="Price/Cost per Unit"/>
-        </columns>
-    </TableView>
+
     <HBox prefHeight="40" AnchorPane.rightAnchor="25" AnchorPane.topAnchor="195">
         <padding>
             <Insets top="10" right="10" bottom="10" left="315"/>
         </padding>
-        <Button text="Add" prefWidth="70" fx:id="addButton"/>
+        <Button text="Add" prefWidth="70" fx:id="btnAdd" onAction="#clickBtnAdd"/>
     </HBox>
-
-
-    <TableView fx:id="tableProducts" prefHeight="150" prefWidth="400" AnchorPane.rightAnchor="30.0"
+    <TableView fx:id="tableSearchProducts" prefHeight="150" prefWidth="400" AnchorPane.rightAnchor="30.0"
                AnchorPane.topAnchor="240.0">
         <columns>
-            <TableColumn fx:id="productIDCol" prefWidth="70" text="Part ID"/>
-            <TableColumn fx:id="productName" prefWidth="90" text="Part Name"/>
-            <TableColumn fx:id="productInv" prefWidth="110" text="Inventory Level"/>
-            <TableColumn fx:id="productPrice" prefWidth="130" text="Price per Unit"/>
+            <TableColumn fx:id="addPartId" prefWidth="70" text="Part ID"/>
+            <TableColumn fx:id="addPartName" prefWidth="90" text="Part Name"/>
+            <TableColumn fx:id="addPartInv" prefWidth="110" text="Inventory Level"/>
+            <TableColumn fx:id="addPartPrice" prefWidth="130" text="Price per Unit"/>
         </columns>
     </TableView>
+    <TableView fx:id="associatedPartsTable" prefHeight="150" prefWidth="400" AnchorPane.rightAnchor="30.0"
+               AnchorPane.topAnchor="50.0">
+        <columns>
+            <TableColumn fx:id="associatedId" prefWidth="60" text="Part ID"/>
+            <TableColumn fx:id="associatedName" prefWidth="100" text="Part Name"/>
+            <TableColumn fx:id="associatedInv" prefWidth="110" text="Inventory Level"/>
+            <TableColumn fx:id="associatedPrice" prefWidth="130" text="Price/Cost per Unit"/>
+        </columns>
+    </TableView>
+
     <HBox prefHeight="10" AnchorPane.topAnchor="385" AnchorPane.rightAnchor="34">
         <padding>
             <Insets top="10" right="0" bottom="2" left="315" />
         </padding>
-        <Button text="Delete" prefWidth="70" fx:id="btnDelete"></Button>
+        <Button text="Delete" prefWidth="70" fx:id="btnDelete" onAction="#clickBtnDelete"></Button>
     </HBox>
     <HBox prefHeight="10" AnchorPane.rightAnchor="34" AnchorPane.topAnchor="422">
-        <Button text="Save" prefWidth="70" fx:id="btnSave"/>
-        <Button text="Cancel" prefWidth="70" fx:id="btnCancel">  <HBox.margin>
+        <Button text="Save" prefWidth="70" fx:id="btnSave" onAction="#clickBtnSave"/>
+        <Button text="Cancel" prefWidth="70" fx:id="btnCancel" onAction="#clickBtnCancel">  <HBox.margin>
             <Insets left="2.0" />
         </HBox.margin></Button>
     </HBox>
