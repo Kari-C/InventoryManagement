@@ -9,9 +9,11 @@ public class Inventory {
 
     public static ObservableList<Part> partsList = FXCollections.observableArrayList();
     public static ObservableList<Product> productsList = FXCollections.observableArrayList();
+    public static int index = 1;
 
     public static void addPart(Part part){
         partsList.add(part);
+        index++;
     }
     public static void addProduct(Product product){
         productsList.add(product);
@@ -22,6 +24,10 @@ public class Inventory {
     public static Product lookupProduct(int productId){
         return lookupProduct(productId);
     }
+    public static int getIndex(){
+        return index;
+    }
+
     public ArrayList lookupPart(String partName){
         ArrayList <Part> matchedParts = new ArrayList<>(); //create an array to hold the matches
         for (Part part : partsList){  //use enhanced for loop to save matches

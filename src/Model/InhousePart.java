@@ -1,5 +1,8 @@
 package Model;
 
+import static Model.Inventory.partsList;
+import static Model.Inventory.productsList;
+
 public class InhousePart extends Part {
 
     private int machineId;
@@ -17,4 +20,11 @@ public class InhousePart extends Part {
     public int getMachineId() {
         return machineId;
     }
+    public static void addPart(Part part) {
+        partsList.add(part);
+    }
+    public static void addProduct(Product product) {
+        productsList.add(product);
+    }
+
 }

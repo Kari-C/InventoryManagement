@@ -57,7 +57,7 @@ public class MainScreenController implements Initializable {
         //load the parts into the table view 'tableParts'
         //example note:  "id" is the part variable name..it's not in the FXML file
         tableParts.setItems(Inventory.getAllParts());
-        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id")); //'id' is the actual variable name
+        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id")); //'id' is the actual variable name from part class
         partNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -88,7 +88,6 @@ public class MainScreenController implements Initializable {
         primaryStage.setTitle("Inventory Management System");
         primaryStage.setScene(new Scene(window, 482, 480));
         primaryStage.show();
-
     }
 
     @FXML
@@ -133,8 +132,9 @@ public class MainScreenController implements Initializable {
 
     @FXML
     public void clickPartDelete(ActionEvent e) {  //delete the selected part in the table and confirm choice
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the part?");
-        alert.setTitle("Delete Part?");  //message for window
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete the part?");  //popup confirm window
+        alert.setTitle("Delete part?");  //message for window
         Optional<ButtonType> result = alert.showAndWait();  //confirmation window button
         if (result.isPresent() && result.get() == ButtonType.OK) {
             ObservableList<Part> allParts, singlePart;
@@ -159,7 +159,7 @@ public class MainScreenController implements Initializable {
             partSearchField.clear();  //clean the text field
     }
 
-
+    @FXML
     public void enterProductSearch(ActionEvent event) {
         if (Objects.equals(productSearchField.getText(), "") ) { //checks for an empty field
             updateProductTableView();  //calls method to refill parts table

@@ -10,6 +10,7 @@ public abstract class Part {  //part is an abstract class
     private Integer stock;
     private Integer min;
     private Integer max;
+    private int index = 0;
 
     public Part(int id, String name, double price, int stock, int min, int max) {
         this.id = id;
@@ -18,6 +19,8 @@ public abstract class Part {  //part is an abstract class
         this.stock = stock;
         this.min = min;
         this.max = max;
+        index++;
+        System.out.println("index called " + index);
     }
 
     public void setId(int id) {
@@ -68,5 +71,7 @@ public abstract class Part {  //part is an abstract class
         return max;
     }
 
-
+    public int getIndex(){
+        return index;
+    }
 }
