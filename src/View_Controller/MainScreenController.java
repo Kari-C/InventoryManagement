@@ -98,8 +98,6 @@ public class MainScreenController implements Initializable {
         tableProducts.setItems(Inventory.getAllProducts());
     }
 
-
-
     @FXML
     public void clickPartAdd(ActionEvent e) throws IOException {
         Stage stageAdd;
@@ -113,19 +111,23 @@ public class MainScreenController implements Initializable {
         stageAdd.setScene(new Scene(root, 482, 480));
         stageAdd.show();
     }
+
     @FXML
     public void clickProductAdd(ActionEvent e) throws IOException {
+        //Window switch
         Stage stageModify;
         Parent root;
-        stageModify = (Stage) btnProductAdd.getScene().getWindow();
+        stageModify = (Stage) btnPartAdd.getScene().getWindow();
         //load up OTHER FXML document
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "AddProduct.fxml"));
-        root = loader.load();
         stageModify.setTitle("Add Product");
-        stageModify.setScene(new Scene(root, 802, 480));
-        stageModify.show();
+        root = loader.load();
+
+        Scene scene = new Scene(root, 802, 480);
+        Main.mainStage.setScene(scene);
     }
+
     @FXML
     void clickPartModify(ActionEvent e) throws IOException {
         //Window switch
@@ -137,6 +139,7 @@ public class MainScreenController implements Initializable {
                 "ModifyPart.fxml"));
         stage.setTitle("Modify Part");
         root = loader.load();
+
         ModifyPartController controller = loader.getController();
         Part modifyPart = tableParts.getSelectionModel().getSelectedItem();
         int index = tableParts.getSelectionModel().getSelectedIndex();
@@ -144,7 +147,7 @@ public class MainScreenController implements Initializable {
         if (modifyPart != null) {
             controller.setPart(modifyPart, index);
         }
-        Scene scene = new Scene(root, 482,480);
+        Scene scene = new Scene(root, 482, 480);
         Main.mainStage.setScene(scene);
     }
 
@@ -165,7 +168,7 @@ public class MainScreenController implements Initializable {
         if (modifyProduct != null) {
             controller.setProduct(modifyProduct, index);
         }
-        Scene scene = new Scene(root, 802,480);
+        Scene scene = new Scene(root, 802, 480);
         Main.mainStage.setScene(scene);
     }
 
@@ -195,6 +198,7 @@ public class MainScreenController implements Initializable {
             singlePart.forEach(allParts::remove);  //removes the selected part
         }
     }
+
     @FXML
         //this closes the program
     void exitApp(ActionEvent event) {

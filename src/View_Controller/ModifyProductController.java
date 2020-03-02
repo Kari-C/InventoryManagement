@@ -109,8 +109,9 @@ public class ModifyProductController {
             clickBtnSearch(event);  //call the search method
         searchField.clear();  //clean the text field
     }
+
     @FXML
-    public void clickBtnSearch(ActionEvent event){
+    public void clickBtnSearch(ActionEvent event) {
         String search = searchField.getText();  //capture the text in the search field
         ObservableList<Part> partMatches = FXCollections.observableArrayList();
         for (Part part : Inventory.getAllParts()) {  //call the getAllParts method
@@ -121,8 +122,6 @@ public class ModifyProductController {
         }
         searchPartsTable.setItems(partMatches); //update window (tableParts) with matches
         searchField.clear();  //clean the text field
-
-
     }
 
 
