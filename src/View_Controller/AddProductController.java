@@ -19,9 +19,11 @@ import java.util.ResourceBundle;
 
 public class AddProductController implements Initializable {
 
+    Product addProduct;
     Part selectedPart;
     Product newProduct;
-    int index = Inventory.productsList.size() + 1;
+    int index = Inventory.productsList.size();
+    int id = Inventory.productsList.size() + 1;
 
     @FXML
     Button btnCancel;
@@ -82,7 +84,12 @@ public class AddProductController implements Initializable {
         partNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        //new item so no associated parts to fill into screen
+
+        productId.setText(Integer.toString(id));
+
+
+        newProduct = new Product(0, null, 0.0, 0, 0, 0);
+
         getAssociatedPartsTable();
         associatedIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -92,25 +99,20 @@ public class AddProductController implements Initializable {
 
     }
 
+    public void getAssociatedPartsTable() {
+        tableAssociatedParts.setItems(newProduct.getAllAssociatedParts());
+    }
 
     @FXML
     public void clickBtnAdd() {
         selectedPart = (Part) tableParts.getSelectionModel().getSelectedItem();   //fixme not sure why not working
         newProduct.addAssociatedPart(selectedPart);        //is it because you don't have proper controller?
+
+
     }
 
     public void getPartsTable() {  //get all parts
         tableParts.setItems(Inventory.getAllParts());  //gets all parts
-    }
-
-    public void getAssociatedPartsTable() {
-        if (tableAssociatedParts.getItems() == null){
-            System.out.println("tableAssociateParts is empty");
-            //tableAssociatedParts.setItems(associatedPartsList);
-        } else {
-            System.out.println("tableAssociated parts is not empty : " + tableAssociatedParts);
-        //tableAssociatedParts.setItems(newProduct.getAllAssociatedParts());
-        }
     }
 
     @FXML //for when you push enter when nothing there so it refreshes
@@ -139,13 +141,20 @@ public class AddProductController implements Initializable {
 
     @FXML
     public void clickBtnSave(ActionEvent actionEvent) throws IOException {
+        id = Integer.valueOf(productId.getText());
         String name = addName.getText();
         int inv = Integer.valueOf(addInv.getText());
         Double price = Double.valueOf(addPrice.getText());
         int min = Integer.valueOf(addMin.getText());
         int max = Integer.valueOf(addMax.getText());
-        newProduct = new Product(index, name, price, inv, min, max);
-        Inventory.addProduct(newProduct);
+
+        Product updatedProduct = new Product(id, name, price, inv, min, max);
+        Inventory.addProduct(updatedProduct);
+        associatedPartsList = tableAssociatedParts.getItems(); //this gets the entire table vs. selected items (like other usage here)
+        for (Part part : associatedPartsList) { //go through list of parts on table and add to AssociatedParts list
+            updatedProduct.addAssociatedPart(part);
+        }
+        //Inventory.getAllProducts().set(index-1, updatedProduct);  //this replaces the object at index with new item
         index++;
         goToMainScreen();
     }
