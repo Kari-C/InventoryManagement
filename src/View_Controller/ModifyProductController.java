@@ -1,15 +1,17 @@
 package View_Controller;
 
 import Model.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -48,6 +50,8 @@ public class ModifyProductController {
     @FXML
     private Button btnAdd;
     @FXML
+    TextField searchField;
+    @FXML
     private TextField productName;
     @FXML
     private TextField productInv;
@@ -60,34 +64,14 @@ public class ModifyProductController {
     @FXML
     private Label productID;
 
-    ObservableList<Part> parts;
+    ObservableList<Part> associatedPartsList;  //to save the associatedPartsList
 
     public ModifyProductController() {
     }
 
-    /*
-    @Override  //when you use this you need the 'Initializable' in the main part of class
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        updatePartTable();  //gets all parts
-        this.addPartId.setCellValueFactory(new PropertyValueFactory<>("id")); //'id' is the actual variable name from part class
-        this.addPartName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        this.addPartInv.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        this.addPartPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        product = new Product(0, null, 0.0, 0, 0, 0);
-        associatedPartsTable.setItems((ObservableList<Part>) product.getAllAssociatedParts()); //cast is here kari
-
-        associatedId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        associatedName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedInv.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        associatedPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        System.out.println(associatedPartsTable + "parts table");
-    }
-  */
     public void setProduct(Product product, int index) {
         this.selectedProduct = product;
-        this. index = index;
+        this.index = index;
 
         getPartsTable();  //gets all parts & then bind to the column fields
         addPartId.setCellValueFactory(new PropertyValueFactory<>("id")); //'id' is the actual variable name from part class
@@ -101,32 +85,54 @@ public class ModifyProductController {
         associatedInv.setCellValueFactory(new PropertyValueFactory<>("stock"));
         associatedPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-
         productID.setText(Integer.toString(product.getId()));  //binds data to input field on left side
         productName.setText(product.getName());
         productInv.setText(Integer.toString(product.getStock()));
         productPrice.setText(Double.toString(product.getPrice()));
         productMax.setText(Integer.toString(product.getMax()));
         productMin.setText(Integer.toString(product.getMin()));
-
     }
 
     public void getPartsTable() {  //get all parts
         searchPartsTable.setItems(Inventory.getAllParts());  //gets all parts
     }
 
-    public void getAssociatedPartsTable(){
+    public void getAssociatedPartsTable() {
         associatedPartsTable.setItems(selectedProduct.getAllAssociatedParts());
     }
 
-    public void clickBtnSearch() {
+    @FXML
+    public void enterBtnSearch(ActionEvent event) {
+        if (Objects.equals(searchField.getText(), "")) { //checks for an empty field
+            getPartsTable();  //calls method to refill parts table
+        } else
+            clickBtnSearch(event);  //call the search method
+        searchField.clear();  //clean the text field
+    }
+    @FXML
+    public void clickBtnSearch(ActionEvent event){
+        String search = searchField.getText();  //capture the text in the search field
+        ObservableList<Part> partMatches = FXCollections.observableArrayList();
+        for (Part part : Inventory.getAllParts()) {  //call the getAllParts method
+            if (Objects.equals(Integer.toString(part.getId()), search.trim()) ||
+                    Objects.equals(part.getName().toLowerCase(), search.toLowerCase().trim())) {
+                partMatches.add(part);
+            }
+        }
+        searchPartsTable.setItems(partMatches); //update window (tableParts) with matches
+        searchField.clear();  //clean the text field
+
+
     }
 
-    public void clickBtnAdd() throws IOException{
+
+    @FXML
+    public void clickBtnAdd() throws IOException {
         Part selectedPart = searchPartsTable.getSelectionModel().getSelectedItem();
         selectedProduct.addAssociatedPart(selectedPart);
     }
 
+    @FXML
     public void clickBtnDelete() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete the product?");  //popup confirm window
@@ -150,14 +156,12 @@ public class ModifyProductController {
         int min = Integer.valueOf(productMin.getText());  //saves the min field
         int max = Integer.valueOf(productMax.getText());  //saves the max field
 
-        Product updatedProduct = new Product(id,name,price,inv, min, max);
-        parts = associatedPartsTable.getItems(); //this gets the entire table vs. selected items (like other usage here)
-        for (Part part : parts) { //go through list of parts on table and add to AssociatedParts list
+        Product updatedProduct = new Product(id, name, price, inv, min, max);
+        associatedPartsList = associatedPartsTable.getItems(); //this gets the entire table vs. selected items (like other usage here)
+        for (Part part : associatedPartsList) { //go through list of parts on table and add to AssociatedParts list
             updatedProduct.addAssociatedPart(part);
         }
-
         Inventory.getAllProducts().set(index, updatedProduct);  //this replaces the object at index with new item
-
         goToMainScreen();
     }
 
@@ -169,5 +173,4 @@ public class ModifyProductController {
     public void clickBtnCancel() throws IOException {
         goToMainScreen();
     }
-
 }

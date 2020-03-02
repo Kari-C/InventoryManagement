@@ -52,7 +52,7 @@
         <Label text="              "/>
         <Button text="Search" prefWidth="80" fx:id="btnSearch" onAction="#clickBtnSearch"></Button>
         <Label text="  " fx:id="btnSearchField"></Label>
-        <TextField prefWidth="175" id="title"></TextField>
+        <TextField prefWidth="175" id="title" fx:id="searchField" onAction="#enterBtnSearch" ></TextField>
     </HBox>
 
     <HBox prefHeight="40" AnchorPane.rightAnchor="25" AnchorPane.topAnchor="195">
